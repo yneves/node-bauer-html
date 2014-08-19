@@ -724,25 +724,41 @@ var Document = lib.factory.class({
 			var type = lib.factory.type(arg);
 			if (type == "array" || type == "arguments") {
 				for (var g = 0; g < arg.length; g++) {
-					if (lib.factory.isString(arg[g])) {
+					var atype = lib.factory.type(arg[g]);
+					if (atype == "string" || atype == "object") {
 						files.push(arg[g]);
 					}
 				}
-			} else if (type == "string") {
+			} else if (type == "string" || type == "object") {
 				files.push(arg);
 			}
 		}
 		while (files.length > 0) {
 			var arg = files.shift();
-			var ext = lib.path.extname(arg);
-			if (ext == ".js") {
-				html.script({ src: arg, type: "text/javascript" });
-			} else if (ext == ".jsx") {
-				html.script({ src: arg, type: "text/jsx" });
-			} else if (ext == ".css") {
-				html.link({ href: arg, rel: "stylesheet", type: "text/css" });
-			} else if (ext == ".ico") {
-				html.link({ href: arg, rel: "shortcut icon" });
+			var type = lib.factory.type(arg);
+			if (type == "object" && lib.factory.isString(arg.require)) {
+				var ext = lib.path.extname(arg.require);
+				if (ext == ".js") {
+					var content = "";
+					if (lib.factory.isArray(arg.vars)) {
+						content += arg.vars.map(function(name) { return "window." + name + " = " }).join("");
+					} else if (lib.factory.isString(arg.vars)) {
+						content += "window." + arg.vars + " = ";
+					}
+					content += "require('" + arg.require + "')";
+					html.script({ type: "text/javascript" },content);
+				}
+			} else if (type == "string") {
+				var ext = lib.path.extname(arg);
+				if (ext == ".js") {
+					html.script({ src: arg, type: "text/javascript" });
+				} else if (ext == ".jsx") {
+					html.script({ src: arg, type: "text/jsx" });
+				} else if (ext == ".css") {
+					html.link({ href: arg, rel: "stylesheet", type: "text/css" });
+				} else if (ext == ".ico") {
+					html.link({ href: arg, rel: "shortcut icon" });
+				}
 			}
 		}
 	},
