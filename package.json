@@ -1,0 +1,28 @@
+{
+  "name": "bauer-html",
+  "version": "0.1.0",
+  "description": "HTML building tool.",
+  "keywords": ["html"],
+  "license": "MIT",
+  "homepage": "https://github.com/yneves/node-bauer-html",
+  "author": {
+    "name": "Yuri Neves Silveira",
+    "url": "http://yneves.com/",
+    "email": "npm@yneves.com"
+  },
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/yneves/node-bauer-html.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": ">=1.0.0"
+  },
+  "dependencies": {
+    "bauer-factory": ">=1.0.0",
+    "cheerio": ">0.16.0"
+  },
+  "main": "html.js"
+}
