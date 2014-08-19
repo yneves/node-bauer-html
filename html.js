@@ -1,3 +1,9 @@
+/*!
+**  bauer-html -- HTML building tool.
+**  Copyright (c) 2014 Yuri Neves Silveira <http://yneves.com>
+**  Licensed under The MIT License <http://opensource.org/licenses/MIT>
+**  Distributed on <http://github.com/yneves/node-bauer-html>
+*/
 // - -------------------------------------------------------------------- - //
 // - libs
 
@@ -719,7 +725,7 @@ var Document = lib.factory.class({
 				for (var g = 0; g < arg.length; g++) {
 					if (lib.factory.isString(arg[g])) {
 						files.push(arg[g]);
-					}						
+					}
 				}
 			} else if (type == "string") {
 				files.push(arg);
