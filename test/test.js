@@ -486,6 +486,22 @@ describe("Element",function() {
 });
 
 // - -------------------------------------------------------------------- - //
+// - Require
+
+describe("Require",function() {
+
+	// @require
+	it("require",function() {
+		var html = lib.html.require(__dirname + "/sample");
+		assert.deepEqual(html,{
+			_open: [],
+			_html: "<div><div class=\"div1\"></div><div class=\"div2\"></div><div class=\"div3\"></div><div class=\"div4\"></div></div>",
+		})
+	});
+
+});
+
+// - -------------------------------------------------------------------- - //
 // - Document
 
 describe("Document",function() {

@@ -8,8 +8,9 @@
 // - libs
 
 var lib = {
-	dom: require("./dom.js"),
+	fs: require("fs"),
 	path: require("path"),
+	dom: require("./dom.js"),
 	factory: require("bauer-factory"),
 };
 
@@ -784,6 +785,7 @@ var Document = lib.factory.class({
 // - exports
 
 exports = function() { return new Element() }
+
 exports.element = function() { return new Element() }
 
 exports.pager = function(params) { return new Pager(params).toElement() }
@@ -796,6 +798,25 @@ exports.cls.Widget = Widget;
 exports.cls.Table = Table;
 exports.cls.Pager = Pager;
 exports.cls.Document = Document;
+
+var cache = {};
+exports.require = function(name) {
+	if (!cache[name]) {
+		cache[name] = new Element();
+		var html = name + ".html";
+		if (lib.fs.existsSync(html)) {
+			cache[name].concat(lib.fs.readFileSync(html,"utf8"));
+		}
+		var js = name + ".js";
+		if (lib.fs.existsSync(js)) {
+			var code = require(js);
+			if (lib.factory.isFunction(code)) {
+				code(cache[name]);
+			}
+		}
+	}
+	return cache[name];
+};
 
 module.exports = exports;
 
