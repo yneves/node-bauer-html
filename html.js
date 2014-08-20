@@ -19,7 +19,7 @@ var lib = {
 
 var TAG_OPEN_CLOSE = ["script","iframe","style"];
 
-var TAG_CLOSED = ["br","hr","img","link","meta","input","source","param","embed"];
+var TAG_CLOSED = ["br","hr","img","link","meta","input","source","param","embed","base"];
 
 var TAG_OPEN = [
 	"html","body","head","title",
@@ -769,6 +769,7 @@ var Document = lib.factory.class({
 		html.doctype();
 		html.html();
 		html.head();
+		lib.factory.isString(params.base) && html.base({ href: params.base });
 		lib.factory.isString(params.keywords) && html.meta({ name: "keywords", content: params.keywords });
 		lib.factory.isString(params.description) && html.meta({ name: "description", content: params.description });
 		lib.factory.isString(params.title) && html.title(params.title);
