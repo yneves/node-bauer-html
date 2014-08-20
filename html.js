@@ -56,6 +56,11 @@ var Element = lib.factory.class({
 		this._html = "";
 	},
 
+	// .toString()
+	toString: function() {
+		return this._html;
+	},
+
 // - -------------------------------------------------------------------- - //
 
 	// .clone()
