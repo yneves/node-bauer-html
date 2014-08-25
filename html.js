@@ -808,6 +808,8 @@ var Document = lib.factory.class({
 
 exports = function() { return new Element() }
 
+exports.dom = lib.dom;
+
 exports.element = function() { return new Element() }
 
 exports.pager = function(params) { return new Pager(params).toElement() }
