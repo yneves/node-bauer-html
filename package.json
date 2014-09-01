@@ -1,6 +1,6 @@
 {
   "name": "bauer-html",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "HTML building tool.",
   "keywords": ["html"],
   "license": "MIT",
@@ -21,7 +21,7 @@
     "mocha": ">=1.0.0"
   },
   "dependencies": {
-    "bauer-factory": ">=1.0.0",
+    "bauer-factory": ">=1.1.0",
     "cheerio": ">0.16.0"
   },
   "main": "html.js"
