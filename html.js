@@ -11,7 +11,6 @@ var lib = {
 	fs: require("fs"),
 	path: require("path"),
 	factory: require("bauer-factory"),
-	dom: require("./lib/dom.js"),
 	table: require("./lib/table.js"),
 	pager: require("./lib/pager.js"),
 	document: require("./lib/document.js"),
@@ -24,8 +23,6 @@ var lib = {
 
 exports = function() { return new lib.element() }
 exports.element = function() { return new lib.element() }
-
-exports.dom = lib.dom;
 
 exports.pager = function(params) { return new lib.pager(params).toElement() }
 exports.table = function(params) { return new lib.table(params).toElement() }
